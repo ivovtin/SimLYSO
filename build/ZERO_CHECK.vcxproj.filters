@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Projects\Geant4.NET\PMT\build\CMakeFiles\ffd7b31e482fa7082827e7d02b4cf054\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{49A89E8D-D032-3ADE-BFF6-4686699BE82B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

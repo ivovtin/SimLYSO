@@ -1,0 +1,36 @@
+#ifndef EventAction_h
+#define EventAction_h 1
+
+#include "G4UserEventAction.hh"
+#include "G4ThreeVector.hh"
+#include "globals.hh"
+
+#include <TTree.h>
+#include <TFile.h>
+#include <TH1.h>
+
+class G4Event;
+class G4HCofThisEvent;
+
+class EventAction : public G4UserEventAction
+{
+  public:
+    EventAction();
+    virtual ~EventAction();
+
+  public:
+    virtual void   BeginOfEventAction(const G4Event*);
+    virtual void   EndOfEventAction(const G4Event*);
+
+private:
+        G4int ScHitsCollID; 
+	G4int EnHitsCollID;
+	G4int NumHitsCollID;
+	
+	TFile* fOutRoot;
+        TTree* dat_tree;        
+};
+
+#endif
+
+

@@ -1,0 +1,8 @@
+﻿  Checking Build System
+  CMake is re-running because E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp is out-of-date.
+    the file 'E:/Projects/Geant4.NET/PMT/input.mac'
+    is newer than 'E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: E:/Projects/Geant4.NET/PMT/build

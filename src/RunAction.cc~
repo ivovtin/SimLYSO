@@ -1,0 +1,210 @@
+#include <iostream>
+using namespace std;
+
+// Make this appear first!
+#include "G4Timer.hh"
+
+#include "RunAction.hh"
+#include "G4Run.hh"
+#include "G4UImanager.hh"
+#include "G4ios.hh"
+#include <sstream>
+#include <iomanip>
+#include "PrimaryGeneratorAction.hh"
+#include "HistoManager.hh"
+
+#include "Histo.hh"
+
+#include "g4root.hh"
+#include "TString.h"
+
+#include "DetectorConstruction_SiPM.hh"
+
+//extern ST1dHistogramm* detSpecter;
+//extern ST1dHistogramm* hitSpecter;
+
+//extern ST1dHistogramm* sciSpecter;
+//extern ST1dHistogramm* cherSpecter;
+//
+//extern ST1dHistogramm* sciTime;
+//extern ST1dHistogramm* cherTime;
+
+//extern ST1dHistogramm* sciWlSpecter;
+//extern ST1dHistogramm* cherWlSpecter;
+
+//extern ST2dHistogramm* hitMap;
+//extern ST2dHistogramm* MultiMap;
+
+RunAction::RunAction(PrimaryGeneratorAction* pga)
+{
+  timer = new G4Timer;
+  pGenerator = pga;
+  fHistoManager = new HistoManager();
+}
+
+RunAction::~RunAction()
+{
+  delete timer;
+  delete fHistoManager;
+}
+
+void RunAction::BeginOfRunAction(const G4Run* aRun)  //вызывается в начале каждого запуска
+{
+  //detSpecter->Reset();
+  //hitSpecter->Reset();
+
+  //sciSpecter->Reset();
+  //cherSpecter->Reset();
+
+  //sciTime->Reset();
+  //cherTime->Reset();
+
+  //sciWlSpecter->Reset();
+  //cherWlSpecter->Reset();
+
+  //hitMap->Reset();
+  //выводит на экран порядковый номер запуска (0, 1 и т. д.)
+  cout << "RunAction::BeginOfRunAction. Run " << aRun->GetRunID() << " start." << endl;
+  timer->Start();
+
+  //histograms
+  //
+  //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  //if (analysisManager->IsActive()) { analysisManager->OpenFile(); }
+  
+  //=====================================================================================
+  // Get analysis manager
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
+  //G4String filename = "output";
+  
+  ex_energy=pGenerator->GetParticleEnergy_keV()/1000;
+  G4String filename = "exampleRoot_" + std::to_string(ex_energy);
+  // Open an output file
+  //man->OpenFile("exampleRoot");
+  man->OpenFile(filename);
+  //DetectorConstruction det;
+  //detT->fArmAngle;
+  //G4double (DetectorConstruction::*fp_1) = &DetectorConstruction::GetArmAngle;
+  
+  //G4cout << " &DetectorConstruction::SetArmAngle -> "  << det.GetArmAngle() << " deg "<< G4endl;
+  //G4cout << " &DetectorConstruction::SetArmAngle -> "  << &DetectorConstruction::fArmAngle << " deg "<< G4endl;
+  //cout << " &DetectorConstruction::SetArmAngle -> "  << detT->fArmAngle << " deg "<< endl;
+  //G4cout << " Particle energy: "  << int(pGenerator->GetParticleEnergy_keV()) << " keV. "<< G4endl;
+  //man->OpenFile("exampleRoot");
+  // Create histogram(s)
+  //man->CreateH1("0","Edep in absorber", 100, 0., 800*MeV);
+  //man->CreateH1("0","Edep in absorber", 1000, 0., 10000000);
+  /*
+  man->SetFirstHistoId(0);
+  man->CreateH1("Time","Time", 100, 0., 10000000);
+  //man->CreateH1("1","Edep in gap", 1000, 0., 10000000);
+  man->CreateH2("0","Number of photons # Time", 100, 0., 10000000.,100,0.,10000000.);
+  */
+  // Create ntuple
+  //man->SetFirstNtupleId(0);
+  man->CreateNtuple("Energy", "Energy");
+  man->CreateNtupleDColumn("gamma");
+  man->CreateNtupleDColumn("electron");
+  man->CreateNtupleDColumn("positron");
+  man->FinishNtuple();
+  //man->CreateNtuple("Number", "Number");
+  //man->CreateNtupleDColumn("opticalphoton");
+  //man->CreateNtupleDColumn("time");
+  //man->FinishNtuple();
+  
+  man->CreateH1("ene","Energy", 100, 0., 10000000);
+  man->CreateH1("cht","chTime", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("cht"),"Time, ps");
+  man->CreateH1("sct","scTime", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("sct"),"Time, ps");
+  //man->CreateH1("optphot","optTime", 100000, 0., 100000);
+  //man->SetH1XAxisTitle(man->GetH1Id("optphot"),"Time, ps");
+  man->CreateH1("chsp","chSpectrum", 900, 100., 1000.);
+  man->SetH1XAxisTitle(man->GetH1Id("chsp"),"WL, nm");
+  man->CreateH1("scsp","scSpectrum", 900, 100., 1000.);
+  man->SetH1XAxisTitle(man->GetH1Id("scsp"),"WL, nm");
+  //man->CreateH2("evst","Energy # Time", 100, 0., 10000000.,100,0.,10000000.);
+  //man->SetH2XAxisTitle(man->GetH1Id("evst"),"Energy, keV");
+  //man->SetH2YAxisTitle(man->GetH1Id("evst"),"Time, ps");
+  //=====================================================================================
+}
+
+void RunAction::EndOfRunAction(const G4Run* aRun)
+{
+  timer->Stop();
+  cout << "RunAction::EndOfRunAction. number of event = " << aRun->GetNumberOfEvent() << endl;
+  cout << " " << *timer << endl;
+
+  //save histograms      
+  //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  //if (analysisManager->IsActive())
+  //{
+	 // analysisManager->Write();
+	 // analysisManager->CloseFile();
+  //}
+
+  //======================================================================================
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
+  man->Write();
+  man->CloseFile();
+  delete G4AnalysisManager::Instance();
+  //=======================================================================================
+
+
+  //std::stringstream strm1;
+  //strm1 << "RESULT2\\DetSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //detSpecter->SaveData(strm1.str().c_str());
+
+  //std::stringstream strm2;
+  //strm2 << "RESULT2\\HitSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //hitSpecter->SaveData(strm2.str().c_str());
+
+  //std::stringstream strm3;
+  //strm3 << "RESULT2\\SciSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //sciSpecter->SaveData(strm3.str().c_str());
+
+  //std::stringstream strm4;
+  //strm4 << "RESULT2\\CherSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //cherSpecter->SaveData(strm4.str().c_str());
+
+  //std::stringstream strm6;
+  //strm6 << "RESULT2\\HitMap_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //hitMap->SaveData(strm6.str().c_str());
+
+  //std::stringstream strm7;
+  //strm7 << "RESULT2\\SciTime_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //sciTime->SaveData(strm7.str().c_str());
+
+  //std::stringstream strm8;
+  //strm8 << "RESULT2\\CherTime_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //cherTime->SaveData(strm8.str().c_str());
+
+  //std::stringstream strm9;
+  //strm9 << "RESULT2\\SciWlSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //sciWlSpecter->SaveData(strm9.str().c_str());
+
+  //std::stringstream strm10;
+  //strm10 << "RESULT2\\CherWlSpectrum_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //cherWlSpecter->SaveData(strm10.str().c_str());
+
+  //std::stringstream strm11;
+  //strm11 << "RESULT2\\MultiMap_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //MultiMap->SaveData(strm11.str().c_str());
+
+  //ST1dHistogramm* histY    = MultiMap->Get1D_Mean(2);
+  //ST1dHistogramm* histYRms = MultiMap->Get1D_RMS(2);
+
+  //std::stringstream strm12;
+  //strm12 << "RESULT2\\MultiMapY_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //histY->SaveData(strm12.str().c_str());
+
+  //std::stringstream strm13;
+  //strm13 << "RESULT2\\MultiMapYRms_Run_" << setw(3) << setfill('0') << int(pGenerator->GetParticleEnergy_keV()) << ".dat";
+  //histYRms->SaveData(strm13.str().c_str());
+
+  //delete histY;
+  //delete histYRms;
+}
+
+
+

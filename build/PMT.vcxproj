@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CA8DCF73-5C04-3CE6-B9DC-42F8DE4ACE5F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>PMT</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Projects\Geant4.NET\PMT\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PMT.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PMT</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Projects\Geant4.NET\PMT\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PMT.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PMT</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\Projects\Geant4.NET\PMT\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">PMT.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">PMT</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\Projects\Geant4.NET\PMT\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">PMT.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">PMT</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Zm200</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_CONSOLE;_WIN32;WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\Geant4\lib\G4Tree.lib;D:\Geant4\lib\G4GMocren.lib;D:\Geant4\lib\G4visHepRep.lib;D:\Geant4\lib\G4RayTracer.lib;D:\Geant4\lib\G4VRML.lib;D:\Geant4\lib\G4interfaces.lib;D:\Geant4\lib\G4persistency.lib;D:\Geant4\lib\G4analysis.lib;D:\Geant4\lib\G4error_propagation.lib;D:\Geant4\lib\G4readout.lib;D:\Geant4\lib\G4physicslists.lib;D:\Geant4\lib\G4parmodels.lib;D:\Geant4\lib\G4FR.lib;D:\Geant4\lib\G4vis_management.lib;D:\Geant4\lib\G4modeling.lib;D:\Geant4\lib\G4run.lib;D:\Geant4\lib\G4event.lib;D:\Geant4\lib\G4tracking.lib;D:\Geant4\lib\G4processes.lib;D:\Geant4\lib\G4expat.lib;D:\Geant4\lib\G4zlib.lib;D:\Geant4\lib\G4digits_hits.lib;D:\Geant4\lib\G4track.lib;D:\Geant4\lib\G4particles.lib;D:\Geant4\lib\G4geometry.lib;D:\Geant4\lib\G4materials.lib;D:\Geant4\lib\G4graphics_reps.lib;D:\Geant4\lib\G4intercoms.lib;D:\Geant4\lib\G4global.lib;D:\Geant4\lib\G4clhep.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Projects/Geant4.NET/PMT/build/Debug/PMT.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Projects/Geant4.NET/PMT/build/Debug/PMT.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Zm200</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_CONSOLE;_WIN32;WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;NDEBUG;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;_WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;NDEBUG;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\Geant4\lib\G4Tree.lib;D:\Geant4\lib\G4GMocren.lib;D:\Geant4\lib\G4visHepRep.lib;D:\Geant4\lib\G4RayTracer.lib;D:\Geant4\lib\G4VRML.lib;D:\Geant4\lib\G4interfaces.lib;D:\Geant4\lib\G4persistency.lib;D:\Geant4\lib\G4analysis.lib;D:\Geant4\lib\G4error_propagation.lib;D:\Geant4\lib\G4readout.lib;D:\Geant4\lib\G4physicslists.lib;D:\Geant4\lib\G4parmodels.lib;D:\Geant4\lib\G4FR.lib;D:\Geant4\lib\G4vis_management.lib;D:\Geant4\lib\G4modeling.lib;D:\Geant4\lib\G4run.lib;D:\Geant4\lib\G4event.lib;D:\Geant4\lib\G4tracking.lib;D:\Geant4\lib\G4processes.lib;D:\Geant4\lib\G4expat.lib;D:\Geant4\lib\G4zlib.lib;D:\Geant4\lib\G4digits_hits.lib;D:\Geant4\lib\G4track.lib;D:\Geant4\lib\G4particles.lib;D:\Geant4\lib\G4geometry.lib;D:\Geant4\lib\G4materials.lib;D:\Geant4\lib\G4graphics_reps.lib;D:\Geant4\lib\G4intercoms.lib;D:\Geant4\lib\G4global.lib;D:\Geant4\lib\G4clhep.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Projects/Geant4.NET/PMT/build/Release/PMT.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Projects/Geant4.NET/PMT/build/Release/PMT.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Zm200</AdditionalOptions>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_CONSOLE;_WIN32;WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;NDEBUG;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;_WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;NDEBUG;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\Geant4\lib\G4Tree.lib;D:\Geant4\lib\G4GMocren.lib;D:\Geant4\lib\G4visHepRep.lib;D:\Geant4\lib\G4RayTracer.lib;D:\Geant4\lib\G4VRML.lib;D:\Geant4\lib\G4interfaces.lib;D:\Geant4\lib\G4persistency.lib;D:\Geant4\lib\G4analysis.lib;D:\Geant4\lib\G4error_propagation.lib;D:\Geant4\lib\G4readout.lib;D:\Geant4\lib\G4physicslists.lib;D:\Geant4\lib\G4parmodels.lib;D:\Geant4\lib\G4FR.lib;D:\Geant4\lib\G4vis_management.lib;D:\Geant4\lib\G4modeling.lib;D:\Geant4\lib\G4run.lib;D:\Geant4\lib\G4event.lib;D:\Geant4\lib\G4tracking.lib;D:\Geant4\lib\G4processes.lib;D:\Geant4\lib\G4expat.lib;D:\Geant4\lib\G4zlib.lib;D:\Geant4\lib\G4digits_hits.lib;D:\Geant4\lib\G4track.lib;D:\Geant4\lib\G4particles.lib;D:\Geant4\lib\G4geometry.lib;D:\Geant4\lib\G4materials.lib;D:\Geant4\lib\G4graphics_reps.lib;D:\Geant4\lib\G4intercoms.lib;D:\Geant4\lib\G4global.lib;D:\Geant4\lib\G4clhep.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Projects/Geant4.NET/PMT/build/MinSizeRel/PMT.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Projects/Geant4.NET/PMT/build/MinSizeRel/PMT.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Zm200</AdditionalOptions>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_CONSOLE;_WIN32;WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;_WIN32;OS;XPNET;_CRT_SECURE_NO_DEPRECATE;G4USE_STD11;G4_STORE_TRAJECTORY;G4VERBOSE;G4UI_USE;G4VIS_USE;G4INTY_USE_WIN32;G4UI_USE_WIN32;G4LIB_BUILD_DLL;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Geant4\include\Geant4;E:\Projects\Geant4.NET\PMT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\Geant4\lib\G4Tree.lib;D:\Geant4\lib\G4GMocren.lib;D:\Geant4\lib\G4visHepRep.lib;D:\Geant4\lib\G4RayTracer.lib;D:\Geant4\lib\G4VRML.lib;D:\Geant4\lib\G4interfaces.lib;D:\Geant4\lib\G4persistency.lib;D:\Geant4\lib\G4analysis.lib;D:\Geant4\lib\G4error_propagation.lib;D:\Geant4\lib\G4readout.lib;D:\Geant4\lib\G4physicslists.lib;D:\Geant4\lib\G4parmodels.lib;D:\Geant4\lib\G4FR.lib;D:\Geant4\lib\G4vis_management.lib;D:\Geant4\lib\G4modeling.lib;D:\Geant4\lib\G4run.lib;D:\Geant4\lib\G4event.lib;D:\Geant4\lib\G4tracking.lib;D:\Geant4\lib\G4processes.lib;D:\Geant4\lib\G4expat.lib;D:\Geant4\lib\G4zlib.lib;D:\Geant4\lib\G4digits_hits.lib;D:\Geant4\lib\G4track.lib;D:\Geant4\lib\G4particles.lib;D:\Geant4\lib\G4geometry.lib;D:\Geant4\lib\G4materials.lib;D:\Geant4\lib\G4graphics_reps.lib;D:\Geant4\lib\G4intercoms.lib;D:\Geant4\lib\G4global.lib;D:\Geant4\lib\G4clhep.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Projects/Geant4.NET/PMT/build/RelWithDebInfo/PMT.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Projects/Geant4.NET/PMT/build/RelWithDebInfo/PMT.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Projects\Geant4.NET\PMT\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/Projects/Geant4.NET/PMT/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HE:/Projects/Geant4.NET/PMT -BE:/Projects/Geant4.NET/PMT/build --check-stamp-file E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/Projects/Geant4.NET/PMT/CMakeLists.txt;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInitialize.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCCompiler.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4ConfigVersion.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4Config.cmake;D:\Geant4\lib\Geant4-10.3.2\Modules\IntelCompileFeatures.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends-relwithdebinfo.cmake;D:\Geant4\lib\Geant4-10.3.2\UseGeant4.cmake;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_Reflectance.csv;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE_15nS.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE15.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE32.txt;E:\Projects\Geant4.NET\PMT\OPTICS\S13360-QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\si.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SPIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SiO2-refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_spectrum.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_Spectrum.csv;E:\Projects\Geant4.NET\PMT\OPTICS\lyso_abslength.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_AbsLength_cm.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_Refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\al_reflectivity.txt;E:\Projects\Geant4.NET\PMT\input.mac;E:\Projects\Geant4.NET\PMT\slava.mac;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Projects\Geant4.NET\PMT\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/Projects/Geant4.NET/PMT/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HE:/Projects/Geant4.NET/PMT -BE:/Projects/Geant4.NET/PMT/build --check-stamp-file E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/Projects/Geant4.NET/PMT/CMakeLists.txt;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInitialize.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCCompiler.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4ConfigVersion.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4Config.cmake;D:\Geant4\lib\Geant4-10.3.2\Modules\IntelCompileFeatures.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends-relwithdebinfo.cmake;D:\Geant4\lib\Geant4-10.3.2\UseGeant4.cmake;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_Reflectance.csv;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE_15nS.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE15.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE32.txt;E:\Projects\Geant4.NET\PMT\OPTICS\S13360-QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\si.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SPIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SiO2-refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_spectrum.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_Spectrum.csv;E:\Projects\Geant4.NET\PMT\OPTICS\lyso_abslength.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_AbsLength_cm.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_Refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\al_reflectivity.txt;E:\Projects\Geant4.NET\PMT\input.mac;E:\Projects\Geant4.NET\PMT\slava.mac;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Projects\Geant4.NET\PMT\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/Projects/Geant4.NET/PMT/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HE:/Projects/Geant4.NET/PMT -BE:/Projects/Geant4.NET/PMT/build --check-stamp-file E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/Projects/Geant4.NET/PMT/CMakeLists.txt;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInitialize.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCCompiler.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4ConfigVersion.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4Config.cmake;D:\Geant4\lib\Geant4-10.3.2\Modules\IntelCompileFeatures.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends-relwithdebinfo.cmake;D:\Geant4\lib\Geant4-10.3.2\UseGeant4.cmake;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_Reflectance.csv;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE_15nS.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE15.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE32.txt;E:\Projects\Geant4.NET\PMT\OPTICS\S13360-QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\si.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SPIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SiO2-refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_spectrum.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_Spectrum.csv;E:\Projects\Geant4.NET\PMT\OPTICS\lyso_abslength.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_AbsLength_cm.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_Refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\al_reflectivity.txt;E:\Projects\Geant4.NET\PMT\input.mac;E:\Projects\Geant4.NET\PMT\slava.mac;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\Projects\Geant4.NET\PMT\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/Projects/Geant4.NET/PMT/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HE:/Projects/Geant4.NET/PMT -BE:/Projects/Geant4.NET/PMT/build --check-stamp-file E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/Projects/Geant4.NET/PMT/CMakeLists.txt;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInitialize.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCCompiler.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;E:\Projects\Geant4.NET\PMT\build\CMakeFiles\3.9.1\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4ConfigVersion.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4Config.cmake;D:\Geant4\lib\Geant4-10.3.2\Modules\IntelCompileFeatures.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends.cmake;D:\Geant4\lib\Geant4-10.3.2\Geant4LibraryDepends-relwithdebinfo.cmake;D:\Geant4\lib\Geant4-10.3.2\UseGeant4.cmake;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\Bialkali_Reflectance.csv;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE.txt;E:\Projects\Geant4.NET\PMT\OPTICS\EASIROC_LTSPICE_15nS.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE15.txt;E:\Projects\Geant4.NET\PMT\OPTICS\KETEK_QE32.txt;E:\Projects\Geant4.NET\PMT\OPTICS\S13360-QE.csv;E:\Projects\Geant4.NET\PMT\OPTICS\si.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SPIROC.txt;E:\Projects\Geant4.NET\PMT\OPTICS\SiO2-refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\csi_spectrum.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_rindex.txt;E:\Projects\Geant4.NET\PMT\OPTICS\LYSO_Spectrum.csv;E:\Projects\Geant4.NET\PMT\OPTICS\lyso_abslength.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_AbsLength_cm.txt;E:\Projects\Geant4.NET\PMT\OPTICS\Meltmount1582_Refraction.txt;E:\Projects\Geant4.NET\PMT\OPTICS\al_reflectivity.txt;E:\Projects\Geant4.NET\PMT\input.mac;E:\Projects\Geant4.NET\PMT\slava.mac;E:\Projects\Geant4.NET\PMT\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\Projects\Geant4.NET\PMT\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\pmt.cpp"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\CathodeHit.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\CathodeSD.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\DetectorConstruction_SiPM.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\EventAction.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\ExtraPhysics.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\Histo.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\HistoManager.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\OpticalPhysics.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\PhysicsList.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\PrimaryGeneratorAction.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\RunAction.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\ScOpticalHit.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\ScintHit.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\ScintillatorSD.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\StackingAction.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\StepMax.cc"  />
+    <ClCompile Include="E:\Projects\Geant4.NET\PMT\src\TrackingAction.cc"  />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\CathodeHit.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\CathodeSD.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\DetectorConstruction_SiPM.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\EventAction.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\ExtraPhysics.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\Histo.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\HistoManager.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\OpticalPhysics.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\PhysicsList.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\PrimaryGeneratorAction.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\RunAction.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\ScOpticalHit.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\ScintHit.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\ScintillatorSD.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\StackingAction.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\StepMax.hh" />
+    <ClInclude Include="E:\Projects\Geant4.NET\PMT\include\TrackingAction.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Projects\Geant4.NET\PMT\build\ZERO_CHECK.vcxproj">
+      <Project>{1E2BF4A1-CFEB-3418-BF9A-0F7857A1F3CA}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

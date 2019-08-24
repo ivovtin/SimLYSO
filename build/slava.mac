@@ -1,0 +1,52 @@
+#set verbose
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+/run/verbose 1
+/vis/verbose 1
+
+#Set physics
+#/testem/phys/addPhysics   emstandard_opt4
+
+#
+/run/initialize
+
+# step limit
+#/testem/phys/setCuts 0.01 mm
+#/testem/stepMax 0.05 mm
+
+
+# Create a scene
+/vis/scene/create
+
+# Invoke a visualization driver
+#
+/vis/sceneHandler/create VRML2FILE
+#
+# Disable auto refresh and quieten vis messages whilst scene and
+# trajectories are established:
+/vis/viewer/set/autoRefresh false
+/vis/verbose errors
+#
+/vis/viewer/create
+/vis/viewer/set/culling global false
+#
+# Specify style (surface or wireframe):
+/vis/viewer/set/style wireframe
+#
+# Add the detector components to the scene
+/vis/scene/add/volume 
+#
+# Draw coordinate axes:
+/vis/scene/add/axes 0 0 0 50 mm
+
+# Store generated trajectories
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories smooth
+/vis/scene/endOfEventAction accumulate
+/vis/scene/notifyHandlers
+
+#Run simulation
+/run/beamOn 1
+#Redrawing of the scene can be done as follows: 
+/vis/viewer/update

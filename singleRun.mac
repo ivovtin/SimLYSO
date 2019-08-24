@@ -1,0 +1,5 @@
+##/gun/position 10 10 {zPosition} cm
+/gun/energy {eKin} MeV
+/run/beamOn 10
+/control/shell mv output.dat output_{eKin}.dat
+

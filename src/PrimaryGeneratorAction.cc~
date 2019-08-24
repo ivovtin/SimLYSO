@@ -1,0 +1,151 @@
+#include <iostream>
+
+//#include </Users/macalex/geant4/geant4.10.02.p02-install/include/Geant4/CLHEP/Units/SystemOfUnits.h>
+#include <CLHEP/Units/SystemOfUnits.h>
+
+#include "PrimaryGeneratorAction.hh"
+
+#include "G4Event.hh"
+#include "G4ParticleGun.hh"
+#include "G4ParticleTable.hh"
+#include "G4ParticleDefinition.hh"
+#include "globals.hh"
+#include "Randomize.hh"
+#include "Histo.hh"
+
+using namespace CLHEP;
+using namespace std;
+
+
+//extern ST1dHistogramm* srcSpecter;
+
+void PrimaryGeneratorAction::CommonPart()
+{
+    G4int n_particle = 1;
+    particleGun  = new G4ParticleGun(n_particle);
+  
+    // default particle kinematic
+    G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+    G4String particleName;
+    G4ParticleDefinition* particle = particleTable->FindParticle(particleName="e-"); //gamma e-
+    //G4ParticleDefinition* particle = particleTable->FindParticle(particleName="mu-"); //muon mu-
+    //G4ParticleDefinition* particle = particleTable->FindParticle(particleName="pi-"); //pion pi-
+
+    particleGun->SetParticleDefinition(particle);
+    //particleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
+    particleGun->SetParticleMomentumDirection(G4ThreeVector(0.,1.,0.));   //at y
+    //particleGun->SetParticleMomentumDirection(G4ThreeVector(0.,-1.,1.));   //x`
+    particleGun->SetParticleEnergy(999.*MeV); 
+    //particleGun->SetParticlePosition(G4ThreeVector(0.*mm ,0.*mm, -200.*cm));
+    //particleGun->SetParticlePosition(G4ThreeVector(0.*cm ,0.*cm, -5.*cm));
+    particleGun->SetParticlePosition(G4ThreeVector(0.*cm , -5.*cm, 0.*cm));
+    //particleGun->SetParticlePosition(G4ThreeVector(0.*cm , 5.*cm, -4.85*cm));
+}
+
+double 
+PrimaryGeneratorAction::GetParticleEnergy_keV()
+{          
+	return particleGun->GetParticleEnergy() / keV;
+}
+
+PrimaryGeneratorAction::PrimaryGeneratorAction()
+{
+  CommonPart();
+  xrType = MONO;
+}
+
+PrimaryGeneratorAction::PrimaryGeneratorAction(char* fname)
+{
+  CommonPart();
+  xrType = SPECTER;
+
+  char   buffer[256];
+  char   seps[]=" \t;";	  //separatoren
+
+  nMaxDataLines=0;
+  dMaxWeight  = 1;
+
+
+  cout << "Read Specter: " << fname << endl;
+  FILE* in =  fopen(fname,"r");
+  if(in==NULL)
+  {
+   cout << "Specter of X-Tube not loaded!!! " << fname << endl;
+   return;
+  }
+  while (!feof(in) && nMaxDataLines<MAX_SPECTER_DATALINES)
+  {
+    fgets(buffer,sizeof(buffer)-1,in);
+    cout << "Read of " << nMaxDataLines << " line: " << buffer <<endl;
+    if (strlen(buffer)>2)
+    {
+    	if (!strstr(buffer,"//"))
+    	{
+    	  dEnergy[nMaxDataLines]  =atoi (strtok(buffer,seps));
+    	  dWeight[nMaxDataLines]  =atof (strtok(NULL,  seps));
+          if(dWeight[nMaxDataLines]>dMaxWeight)dMaxWeight = dWeight[nMaxDataLines];
+          nMaxDataLines++;
+       	}
+    }
+  }
+  cout << "Specter " << fname << "loaded! There are " << nMaxDataLines << " datalines." <<endl;
+
+  fclose(in);
+
+}
+
+PrimaryGeneratorAction::~PrimaryGeneratorAction()
+{
+  delete particleGun;
+}
+
+void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
+{
+	double r1;
+	double r2;
+	double x, y, z;
+
+	//-------------------------------------
+	switch (xrType)
+	{
+	case MONO:
+		break;
+
+	case SPECTER:
+		do
+		{
+			r1 = nMaxDataLines*G4UniformRand();
+			r2 = dMaxWeight*G4UniformRand();
+		} while (r2 > dWeight[(int)r1]);
+		particleGun->SetParticleEnergy(r1*keV);//keV
+		break;
+	}
+
+	//-------------------------------------
+	G4ThreeVector xyzPosition = particleGun->GetParticlePosition();
+	//do
+	//{
+    //x = 0*mm; //75.0*(2 * G4UniformRand() - 1)*mm;
+    //y = 0*mm; //10.0*(2 * G4UniformRand() - 1)*mm;
+	//} while ((abs(x) < 3.6) || (abs(y) < 3.6));
+	x = xyzPosition.x();
+	y = xyzPosition.y();
+	z = xyzPosition.z();
+    particleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+
+  //srcSpecter->AddEvent(particleGun->GetParticleEnergy()/keV);
+  particleGun->GeneratePrimaryVertex(anEvent);
+  
+  //ex_energy=particleGun->GetParticleEnergy();
+  //cout << "New event started! " << anEvent->GetEventID() << " Particle energy: "  << ex_energy << " MeV. "<< endl; 
+
+
+  //G4int  n_event = anEvent->GetEventID();
+  //if((n_event%100)==0)
+  //{
+  //  cout << "New event started! " << anEvent->GetEventID() << " Particle energy: "  << particleGun->GetParticleEnergy()/keV  << " keV. "<< endl; 
+  //} 
+
+}
+
+

@@ -1,0 +1,44 @@
+﻿  Building Custom Rule E:/Projects/Geant4.NET/PMT/CMakeLists.txt
+  CMake does not need to re-run because E:/Projects/Geant4.NET/PMT/build/CMakeFiles/generate.stamp is up-to-date.
+  pmt.cpp
+  CathodeHit.cc
+  CathodeSD.cc
+  DetectorConstruction_SiPM.cc
+  EventAction.cc
+  ExtraPhysics.cc
+  Histo.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\numeric(21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\numeric(31): note: см. ссылку на создание экземпляров функции шаблон при компиляции "_Ty std::_Accumulate_unchecked<double*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2 &)"
+          with
+          [
+              _Ty=float,
+              _Fn2=std::plus<void>,
+              _InIt=double *
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\numeric(39): note: см. ссылку на создание экземпляров функции шаблон при компиляции "_Ty std::accumulate<_InIt,_Ty,std::plus<void>>(_InIt,_InIt,_Ty,_Fn2)"
+          with
+          [
+              _Ty=float,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,
+              _Fn2=std::plus<void>
+          ]
+  E:\Projects\Geant4.NET\PMT\src\Histo.cc(143): note: см. ссылку на создание экземпляров функции шаблон при компиляции "_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,float>(_InIt,_InIt,_Ty)"
+          with
+          [
+              _Ty=float,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>
+          ]
+  HistoManager.cc
+  OpticalPhysics.cc
+  PhysicsList.cc
+  PrimaryGeneratorAction.cc
+  RunAction.cc
+  Scintillation.cc
+  ScintillatorSD.cc
+  StackingAction.cc
+  StepMax.cc
+  SteppingAction.cc
+  TrackingAction.cc
+  Создание кода...
+  PMT.vcxproj -> E:\Projects\Geant4.NET\PMT\build\RelWithDebInfo\PMT.exe
+  PMT.vcxproj -> E:/Projects/Geant4.NET/PMT/build/RelWithDebInfo/PMT.pdb (Full PDB)

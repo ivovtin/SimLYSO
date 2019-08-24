@@ -1,0 +1,238 @@
+#include "EventAction.hh"
+
+//#include </Users/macalex/geant4/geant4.10.02.p02-install/include/Geant4/CLHEP/Units/SystemOfUnits.h>
+#include <CLHEP/Units/SystemOfUnits.h>
+
+#include "G4Event.hh"
+#include "G4EventManager.hh"
+#include "G4VVisManager.hh"
+#include "G4TrajectoryContainer.hh"
+#include "G4Trajectory.hh"
+#include "G4UImanager.hh"
+#include "G4SDManager.hh"
+#include "G4ios.hh"
+#include "Histo.hh"
+
+#include <TTree.h>
+#include <TFile.h>
+#include <TH1.h>
+
+#include "ScOpticalHit.hh"
+#include "ScintHit.hh"
+
+#include "g4root.hh"
+
+#include "PrimaryGeneratorAction.hh"
+#include <iostream>
+#include "RunAction.hh"
+
+#include "DetectorConstruction_SiPM.hh"
+
+using namespace std;
+
+//extern ST1dHistogramm* sciTime;
+//extern ST1dHistogramm* cherTime;
+//extern ST1dHistogramm* regSpecter;
+
+extern ST2dHistogramm* gSpectrum;
+extern ST2dHistogramm* epSpectrum;
+extern ST2dHistogramm* emSpectrum;
+
+extern ST2dHistogramm* MultiMap;
+
+extern int nTimeHistNumber;
+extern std::vector<ST1dHistogramm*> vTimeHist;
+
+extern std::vector<std::pair<double, double>> vgSpectrum;
+extern std::vector<std::pair<double, double>> vemSpectrum;
+extern std::vector<std::pair<double, double>> vepSpectrum;
+
+std::vector<int> vTime;
+    struct data_t
+    {
+        int number;
+        int amp[1024];
+        int ti[1024];
+        float sum;
+    } dat;
+TH1F* tsp;
+
+using namespace CLHEP;
+//extern double ex_energy;
+
+EventAction::EventAction():ScHitsCollID(-1), EnHitsCollID(-1), NumHitsCollID(-1)
+{
+  fOutRoot = new TFile("example.root", "RECREATE", NULL, 1);
+  //fOutRoot = new TFile(TString::Format("example_%d.root",ex_energy).Data(), "RECREATE", NULL, 1);
+  //pGenerator = pga;
+  //G4cout << " Particle energy: "  << pGenerator->GetParticleEnergy_keV() << " keV. "<< G4endl;
+  //G4cout << " Particle energy: "  << energy << " keV. "<< G4endl;
+  dat_tree = new TTree("tt","G4sim results");
+  dat_tree->Branch("data",&dat.number,"number/i:amp[1024]/i:ti[1024]/i:sum/f");
+  tsp=new TH1F("tsp","Time spectrum",100000,0,100000);
+  tsp->SetXTitle("Time, ps");
+}
+
+EventAction::~EventAction()
+{
+	dat_tree->Write();
+	tsp->Write();
+	fOutRoot->Close();
+}
+
+void EventAction::BeginOfEventAction(const G4Event* evt)
+{
+    int evtNb = evt->GetEventID();
+    dat.number=evtNb;
+    vTime.clear();
+
+    G4SDManager * SDman = G4SDManager::GetSDMpointer(); 
+
+    if(ScHitsCollID == -1) { ScHitsCollID = SDman->GetCollectionID("ScHitsCollection"); }
+    if(EnHitsCollID == -1) { EnHitsCollID = SDman->GetCollectionID("EnHitsCollection"); }
+    if(NumHitsCollID == -1) { NumHitsCollID = SDman->GetCollectionID("NumHitsCollection"); }
+
+    if (evtNb%1000 == 0) {G4cout << "\n---> Begin of Event: " << evtNb << G4endl;}
+}
+
+
+void EventAction::EndOfEventAction(const G4Event* evt)
+{
+  G4HCofThisEvent* HCE = evt->GetHCofThisEvent();
+  ScOpticalHitsCollection* OpticalHitsColl = 0;
+  ScintHitsCollection*     EnergyHitsColl = 0;
+  ScintHitsCollection*     NumHitsColl = 0;
+
+  //==============================================================================
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
+  
+  //==============================================================================
+  
+  if(HCE) 
+  {    
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	if(ScHitsCollID != -1) OpticalHitsColl = static_cast<ScOpticalHitsCollection*>(HCE->GetHC(ScHitsCollID));
+	if (OpticalHitsColl)
+	{
+		G4int nOptHits = OpticalHitsColl->entries();
+//		std::vector<int> vTime;
+
+		for (G4int iHit = 0; iHit<nOptHits; iHit++)
+		{
+			int nTime = static_cast<int>((*OpticalHitsColl)[iHit]->GetTime() / CLHEP::picosecond);
+			vTime.push_back(nTime);
+
+			G4String creator = (*OpticalHitsColl)[iHit]->GetProcessName();
+			if (creator == "Scintillation") { man->FillH1(man->GetH1Id("sct"), nTime, 1);  tsp->Fill(nTime); 
+			//man->FillH1(man->GetH1Id("pht"), nTime, 1);
+			} //sciTime->AddEvent(nTime); }
+			if (creator == "Cerenkov") { man->FillH1(man->GetH1Id("cht"), nTime, 1); tsp->Fill(nTime);  
+			//man->FillH1(man->GetH1Id("pht"), nTime, 1);
+			} //cherTime->AddEvent(nTime); }
+//			      G4ThreeVector xyzCoor = (*ScHitsColl)[iHit]->GetPosition();
+//ll			      G4ThreeVector xyzCoor = (*ScHitsColl)[iHit]->GetPos();
+//			      hitMap->AddEvent(xyzCoor.x()/mm, xyzCoor.y()/mm);
+//ll			      man->FillH2(1, xyzCoor.x()/mm, xyzCoor.y()/mm);
+		}
+		//get time distributions
+		std::sort(vTime.begin(), vTime.end());
+//		int nHLength = std::min((int)vTime.size(), nTimeHistNumber);
+		int nHLength = (int)vTime.size();
+		G4cout<<"nHLength:"<<nHLength<<G4endl;
+//		int k=0;
+		for (int k = 0; k < 1024; k++){
+		int n=0; //, i=0; 
+		dat.ti[k]=k;
+		 for (int i=0; i<nHLength; i++) // (int vt : vTime )
+		 {	
+			int vt=vTime[i];
+			if ( vt>(200*k) && vt<(200*(k+1)) ) {dat.amp[k]++; n++;}
+//			vTimeHist[i]->AddEvent(vTime[i]);		
+//	G4cout <<"i:vTime "<<i<<":"<<vt<<"\t k:amp_k:t_k "<<k<<":"<<dat.amp[k]<<":"<<dat.ti[k]<<G4endl;
+		 }
+		//dat.amp[k]=n;
+		dat.sum=+n/1024;
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	if(EnHitsCollID != -1) EnergyHitsColl  = static_cast<ScintHitsCollection*>(HCE->GetHC(EnHitsCollID));
+	G4double Edep = 0;
+	if (EnergyHitsColl)
+	{
+		G4int nHits = EnergyHitsColl->entries();
+		for (G4int iHit = 0; iHit<nHits; iHit++)
+		{
+			Edep += (*EnergyHitsColl)[iHit]->GetEnergy();
+		}
+		//regSpecter->AddEvent(Edep / CLHEP::keV);
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	if (NumHitsCollID != -1) NumHitsColl = static_cast<ScintHitsCollection*>(HCE->GetHC(NumHitsCollID));
+	if (NumHitsColl)
+	{       
+                G4int nOptic = 0;   //number optic phot.
+		G4int nHits = NumHitsColl->entries();
+		for (G4int iHit = 0; iHit<nHits; iHit++)
+		{
+			std::string partName = (*NumHitsColl)[iHit]->GetName();
+			double kineticEnergy = (*NumHitsColl)[iHit]->GetEnergy() / CLHEP::keV;
+			double dTime = (*NumHitsColl)[iHit]->GetTime() / CLHEP::picosecond;
+
+                        //G4cout << "\n---> Begin of Event: " << partName << G4endl;
+                        //G4cout << "\n---> iHit: " << iHit << G4endl;
+
+			if (kineticEnergy > 0)
+			{
+				if (partName == "gamma")
+				{
+					gSpectrum->AddEvent(kineticEnergy, dTime);
+					std::pair<double, double> par{ kineticEnergy, dTime };
+					vgSpectrum.push_back(par);
+                                        //man->FillH1(0, kineticEnergy); 
+                                        //man->FillNtupleDColumn(0,0, kineticEnergy); 
+                                        man->FillNtupleDColumn(0, kineticEnergy);
+				}
+				else if (partName == "e-")
+				{
+					emSpectrum->AddEvent(kineticEnergy, dTime);
+					std::pair<double, double> par{ kineticEnergy, dTime };
+					vemSpectrum.push_back(par);
+                                        man->FillNtupleDColumn(1, kineticEnergy); 
+                                        //man->FillH2(0, kineticEnergy,dTime);
+                                        man->FillH1(man->GetH1Id("ene"), kineticEnergy);
+				}
+   			        else if (partName == "e+")
+				{
+					epSpectrum->AddEvent(kineticEnergy, dTime);
+					std::pair<double, double> par{ kineticEnergy, dTime };
+					vepSpectrum.push_back(par);
+                                        man->FillNtupleDColumn(2, kineticEnergy); 
+				}
+		         }
+				/*if (partName == "opticalphoton")
+				{       
+                                        //nOptic++;
+                                        //man->FillNtupleDColumn(1,0, nOptic); 
+                                        //man->FillNtupleDColumn(1,1, dTime); 
+                                        //G4cout << "\n---> nOptic: " << nOptic << G4endl;
+                                        //G4cout << "\n---> Event: " << evt->GetEventID() << G4endl;
+	                                //man->FillH1(0, dTime);
+                                        man->FillH1(man->GetH1Id("optphot"), dTime, 1);                                        
+ 			        }
+ 			        */	
+		}
+		if(nHits)
+		{ 
+			MultiMap->AddEvent(Edep / CLHEP::keV, (double)nHits); 
+		}
+                //G4cout << "\n---> nOptic: " << nOptic << G4endl;
+	}
+  }
+  man->AddNtupleRow();
+  dat_tree->Fill();
+  //man->AddNtupleRow(0);
+  //man->AddNtupleRow(1);
+}
+

@@ -1,0 +1,29 @@
+#set verbose
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+# step limit
+#/testem/phys/setCuts 0.01 mm
+#/testem/stepMax 0.05 mm
+
+#
+/run/initialize
+
+# no step limitation from eLoss
+#/process/eLoss/StepFunction 1 100 um
+#
+# eliminate straggling
+#/process/eLoss/fluct false
+#/process/inactivate msc
+
+#Run simulation
+#/run/beamOn 1000
+##/control/loop singleRun.mac eKin 10 100 5
+##/control/loop enerRun.mac Angle 0 90 10
+##/control/loop energyRun_e.mac Angle -60 60 10
+/control/loop energyRun_mu.mac Angle -60 60 10
+
+
+
+
