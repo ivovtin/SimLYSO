@@ -8,5 +8,6 @@
 /run/verbose 2
 #
 # Visualization setting
-/control/execute vis.mac
-#/control/execute slava.mac
+#/control/execute vis.mac
+/control/execute visualization.mac
+
