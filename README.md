@@ -1,18 +1,39 @@
-Particle Species |  Color    |
-=============================|
-"gamma"          | "green"   |
-"e-"             | "red"     |
-"e+"             | "blue"    |
-"pi+"            | "magenta" |
-"pi-"            | "magenta" |
-"proton"         | "cyan"    |
-"neutron"        | "yellow"  | 
-"other"          | "gray"    |
-=============================|
+## Getting the code
+Fork to your directory the code here: https://github.com/ivovtin/SimLYSO<br />
+Clone it locally:<br />
+git clone https://github.com/[YOURNAME]/SimLYSO <br />
+You should create your own branch, then do pull requests when you are done. <br />
 
-Энергия первичных чатсиц
-число вторичных - их энергии
-Время
+Запуск моделирования:
+====================
+Нужно настроить среду Geant4-10.3.2 <br />
+Сборка в SimLYSO_build: <br />
+ccmake ../              <br />
+жмем продолжить и сгенерировать <br />
+make <br />
+
+- ./SimLYSO input.mac <br />
+Зависимые макросы input.mac->energyRun_mu.mac->allRallRun.mac <br />
+
+./SimLYSO <br />
+
+для визуализации редактируем visualization.mac <br />
+
+- Start tasks on batch system: <br />
+  ./run_batch.sh
+
+
+Particle Species |  Color    | <br />
+=============================| <br />
+"gamma"          | "green"   | <br />
+"e-"             | "red"     | <br />
+"e+"             | "blue"    | <br />
+"pi+"            | "magenta" | <br />
+"pi-"            | "magenta" | <br />
+"proton"         | "cyan"    | <br />
+"neutron"        | "yellow"  | <br />
+"other"          | "gray"    | <br />
+=============================| <br />
 
 
 Информация по GEANT4:
@@ -122,41 +143,6 @@ G4RunManager - объект управляет процессом моделир
 
 
 PrimaryGeneratorAction отвечает за создание первичной частицы, с которой начинается процесс моделирования события. Первичной частицей может быть электрон из ускорителя, фотон, излученный из радиоактивного источника, или вообще любая другая частица.
-
-
-
-Результаты лежат в PMT_build в директориях  particle_electron и particle_muon.
-Запуск моделирования:
-./SimLYSO input.mac
-Зависимые макросы input.mac->energyRun_mu.mac->allRallRun.mac
-
-
-Нужно настроить среду Geant4 в .bash_profile.
-Сборка в SimLYSO_build:
-ccmake ../
-жмем продолжить и сгенерировать
-make
-
-./SimLYSO
-
-для визуализации:
-./SimLYSO visualization.mac
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
 
 
 
