@@ -7,5 +7,5 @@
 /MTD/detector/armAngle {Angle} deg
 /gun/energy {eKin} MeV
 /MTDAction/nameRootFile file_{eKin}MeV_{Angle}deg.root 
-/run/beamOn 1
+/run/beamOn 1000
 

@@ -111,6 +111,8 @@ void TrackingAction::PreUserTrackingAction(const G4Track* aTrack)
 	//count optical photons
 	CathodeSD* pmtSD = dynamic_cast<CathodeSD*>(myDetector->GetSensetiveDetector());
 	if (pmtSD)pmtSD->ProcessHits_OpticalGenerated(fScintillationCounter, fCerenkovCounter);
+	CathodeSD* pmtSD2 = dynamic_cast<CathodeSD*>(myDetector->GetSensetiveDetector2());
+	if (pmtSD2)pmtSD2->ProcessHits_OpticalGenerated(fScintillationCounter, fCerenkovCounter);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

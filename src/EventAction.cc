@@ -196,8 +196,8 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 			vTime.push_back(nTime);
 
 			G4String creator = (*OpticalHitsColl)[iHit]->GetProcessName();
-			//if (creator == "Scintillation") { man->FillH1(man->GetH1Id("sct"), nTime, 1);  tsp->Fill(nTime); 
-			if (creator == "Scintillation") { man->FillH1(man->GetH1Id("sct"), nTime+dt, 1);  tsp->Fill(nTime+dt); 
+			if (creator == "Scintillation") { man->FillH1(man->GetH1Id("sct"), nTime, 1);  tsp->Fill(nTime); 
+			//if (creator == "Scintillation") { man->FillH1(man->GetH1Id("sct"), nTime+dt, 1);  tsp->Fill(nTime+dt); 
 			//man->FillH1(man->GetH1Id("pht"), nTime, 1);
 			} //sciTime->AddEvent(nTime); }
 			if (creator == "Cerenkov") { man->FillH1(man->GetH1Id("cht"), nTime, 1); tsp->Fill(nTime);  

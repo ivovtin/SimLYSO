@@ -25,12 +25,6 @@
 //#include </Users/macalex/geant4/geant4.10.02.p02-install/include/Geant4/CLHEP/Units/SystemOfUnits.h>
 #include <CLHEP/Units/SystemOfUnits.h>
 
-//extern ST1dHistogramm* detSpecter;
-//extern ST1dHistogramm* hitSpecter;
-
-//extern ST1dHistogramm* sciSpecter;
-//extern ST1dHistogramm* cherSpecter;
-
 using namespace CLHEP;
 
 CathodeSD::CathodeSD(G4String name) : G4VSensitiveDetector(name), HitsCollection(NULL)
@@ -40,14 +34,6 @@ CathodeSD::CathodeSD(G4String name) : G4VSensitiveDetector(name), HitsCollection
 	// In case your sensitive detector generates more than	one kinds of hits(e.g.anode and cathode hits
 	// separately), define all collection names.
     collectionName.insert("ScHitsCollection");
-
-
-	//vWeight.resize(nTimeScale, 0);
-	//vShape.resize(3*nTimeScale+1, 0);
-
-	//std::vector<double> dWl;
-	//OptService::ReadParameters("OPTICS\\EASIROC_LTSPICE_15nS.txt", dWl, vWeight);
-	//nMaxOffset = vShape.size() - vWeight.size() - 1;
 
 	//Register that
 	G4SDManager *sdman = G4SDManager::GetSDMpointer();
@@ -158,17 +144,6 @@ G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
 					}
 
 					HitsCollection->insert(OpticalHit);
-
-
-					////find current photon offset in time
-					//int nOffset = (nTime > nMaxOffset) ? nMaxOffset : nTime;
-
-					////add shifted
-					//auto iShape = vShape.begin() + nOffset;
-					//for (auto iWeight = vWeight.begin(); iWeight != vWeight.end(); ++iWeight, ++iShape)
-					//{
-					//	*iShape += *iWeight;
-					//}
 				}
 				break;
 
@@ -209,35 +184,6 @@ void CathodeSD::EndOfEvent(G4HCofThisEvent* HCE)
 	      HCID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
 	  }
 	  HCE->AddHitsCollection(HCID, HitsCollection);
-
-
-	//.. print info about collection of hits
-	//detSpecter  ->AddEvent(_nDetectedLight);
-	//hitSpecter  ->AddEvent(_nHits);
-	//sciSpecter  ->AddEvent(_nScintillation);
-	//cherSpecter ->AddEvent(_nCherenkov);
-
-
-	////find maximal value
-	//double dMax = *std::max_element(vShape.begin(), vShape.end());
-	//shapedSpecter->AddEvent(dMax);
-
-	//static int nCounter = 0;
-
-	////save for debug
-	//if (nCounter++ < 10)
-	//{
-	//	G4int evtNb = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
-	//	std::ofstream myfile;
-	//	std::stringstream sName;
-	//	sName << "example" << evtNb << ".txt";
-	//	myfile.open(sName.str(), std::ios::out);
-	//	for (auto it = vShape.begin(); it != vShape.end(); ++it) { myfile << static_cast<int>(it - vShape.begin()) << " " << *it << std::endl; }
-	//	myfile.close();
-	//}
-
-	////erase data
-	//std::fill(vShape.begin(), vShape.end(), 0);
 }
 
 

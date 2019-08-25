@@ -54,7 +54,9 @@ using namespace CLHEP;
 DetectorConstruction::DetectorConstruction()
 :solidWorld(0),  logicWorld(0),  physiWorld(0),
  solidCathode(0),logicCathode(0),physiCathode(0),
+ solidCathode2(0),logicCathode2(0),physiCathode2(0),
  fWorldLength(0.), fSourceDistance(0.), theCathodeSD(0),
+ theCathodeSD2(0),
  fArmAngle(90.*deg), fArmRotation(0), physiWrapper(0),
  fMessenger(0)
 {
@@ -511,9 +513,16 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
   //--------- Determine positions ---------
   G4ThreeVector positionWrapper   = G4ThreeVector(0, 0, 0);
   G4ThreeVector positionScint   = G4ThreeVector(0, 0, 0);
+  //1 SiPM
   G4ThreeVector positionGrease  = G4ThreeVector(0, 0, fScintDimZ / 2.0 + fGreaseThickness / 2.0);
   G4ThreeVector positionEpoxy   = G4ThreeVector(0, 0, fScintDimZ / 2.0 + fGreaseThickness + fEpoxyThickness / 2.0);
-  G4ThreeVector positionCathode = G4ThreeVector(0, 0, fScintDimZ / 2.0 + fGreaseThickness + +fEpoxyThickness + fCathodeThickness / 2.0);
+  G4ThreeVector positionCathode = G4ThreeVector(0, 0, fScintDimZ / 2.0 + fGreaseThickness + fEpoxyThickness + fCathodeThickness / 2.0);
+   
+  //2 SiPM 
+  G4ThreeVector positionGrease2  = G4ThreeVector(0, - fScintDimY / 2.0 - fGreaseThickness / 2.0, 0);
+  G4ThreeVector positionEpoxy2  = G4ThreeVector(0, - fScintDimY / 2.0 - fGreaseThickness - fEpoxyThickness / 2.0, 0);
+  G4ThreeVector positionCathode2 = G4ThreeVector(0, - fScintDimY / 2.0 - fGreaseThickness - fEpoxyThickness - fCathodeThickness / 2.0, 0);
+
 
   //--------- Definitions of Solids, Logical Volumes, Physical Volumes ---------
   //------------------------------
@@ -526,10 +535,6 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 
   //  Must place the World Physical volume unrotated at (0,0,0).
   //
-  //G4RotationMatrix *rm = new G4RotationMatrix();
-  //rm->rotateZ(30*deg);
-  //rm->rotateY(90*deg);
-  //rm->rotateY(60*deg);
   
   physiWorld = new G4PVPlacement(0,               // no rotation
                                  G4ThreeVector(), // at (0,0,0)
@@ -541,54 +546,6 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 
 
   //------------------------------
-  //Steel box
-  //------------------------------
-  //G4Tubs* Solid_Tube = new G4Tubs("Solid_Tube", fSteelCaseR1, fSteelCaseR2, fSteelCaseLength/2, 0., 360.*deg);
-  //G4LogicalVolume* Solid_log = new G4LogicalVolume(Solid_Tube, G4Material::GetMaterial("Steel"), "Solid_log");
-
-  //G4VisAttributes* Solid_VisAttr = new G4VisAttributes(G4Color(1., 1., 1.));
-  //Solid_VisAttr->SetForceWireframe(true);
-  //Solid_log->SetVisAttributes(Solid_VisAttr);
-
-  //G4VPhysicalVolume* Solid_phys = new G4PVPlacement(0,
-  //	  G4ThreeVector(0.*cm, 0.*cm, -fSteelCaseLength/2),
-  //	  Solid_log,
-  //	  "Solid",
-  //	  logicWorld,
-  //	  false,
-  //	  0);
-
-  //------------------------------
-  //Al cups
-  //------------------------------
-  //G4Tubs* Cup_Tube = new G4Tubs("Cup_Tube", 0.*mm, fSteelCaseR2, fAlCupLength / 2, 0., 360.*deg);
-  //G4LogicalVolume* Cup_log = new G4LogicalVolume(Cup_Tube, G4Material::GetMaterial("Aluminum"), "Cup_log");
-
-  //G4VisAttributes* Cup_VisAttr = new G4VisAttributes(G4Color(0.9, 0.7, 0.5));
-  //Cup_VisAttr->SetForceWireframe(true);
-  //Cup_log->SetVisAttributes(Cup_VisAttr);
-
-  //G4VPhysicalVolume* Cup_phys = new G4PVPlacement(0,
-  //	  G4ThreeVector(0.*cm, 0.*cm, -fSteelCaseLength- fAlCupLength/2),
-  //	  Cup_log,
-  //	  "Cup",
-  //	  logicWorld,
-  //	  false,
-  //	  0);
-
-  //G4Tubs* Cup_Tube2 = new G4Tubs("Cup_Tube2", 10.*mm, fSteelCaseR2, fAlCupLength / 2, 0., 360.*deg);
-  //G4LogicalVolume* Cup_log2 = new G4LogicalVolume(Cup_Tube2, G4Material::GetMaterial("Aluminum"), "Cup_log2");
-  //Cup_log2->SetVisAttributes(Cup_VisAttr);
-
-  //G4VPhysicalVolume* Cup_phys2 = new G4PVPlacement(0,
-  //	  G4ThreeVector(0.*cm, 0.*cm, fAlCupLength / 2),
-  //	  Cup_log2,
-  //	  "Cup2",
-  //	  logicWorld,
-  //	  false,
-  //	  0);
-
-//------------------------------
   // Air wrapper for rotation
   //------------------------------
   G4Tubs* solidWrapper = new G4Tubs("Wrapper", 0.*cm, (0.5*sqrt(fScintDimX*fScintDimX + fScintDimY*fScintDimY)+0.1*mm), (fScintDimZ/2.+fGreaseThickness+fEpoxyThickness+fCathodeThickness),0., 360.*deg);
@@ -617,14 +574,24 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
                                   0);              // copy number
 
   //------------------------------------------------
-  // Grease
+  // Grease 1
   //------------------------------------------------
   solidGrease = new G4Tubs("sgrease", 0.*cm, fGreaseRadius, fGreaseThickness / 2.0, 0.*deg, 360.*deg);
   logicGrease = new G4LogicalVolume(solidGrease, G4Material::GetMaterial("Polydimethylsiloxane"), "lGrease", 0,0,0);
   physiGrease = new G4PVPlacement(0, positionGrease, logicGrease, "pGrease", logicWrapper, false, 0);              // copy number
 
   //------------------------------------------------
-  // Case
+  // Grease 2
+  //------------------------------------------------
+  solidGrease2 = new G4Tubs("sgrease2", 0.*cm, fGreaseRadius, fGreaseThickness / 2.0, 0.*deg, 360.*deg);
+  logicGrease2 = new G4LogicalVolume(solidGrease2, G4Material::GetMaterial("Polydimethylsiloxane"), "lGrease2", 0,0,0);
+  G4RotationMatrix *rm = new G4RotationMatrix();
+  rm->rotateX(90*deg);
+  physiGrease2 = new G4PVPlacement(rm, positionGrease2, logicGrease2, "pGrease2", logicWrapper, false, 0);             
+
+
+  //------------------------------------------------
+  // Case 1
   //------------------------------------------------
   solidEpoxy = new G4Box("Epoxy", fEpoxyDimX / 2., fEpoxyDimY / 2., fEpoxyThickness / 2.);
   logicEpoxy = new G4LogicalVolume(solidEpoxy, G4Material::GetMaterial("Epoxy"), "lEpoxy", 0, 0, 0);
@@ -636,9 +603,23 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 	  false,           // no boolean operations
 	  0);              // copy number
 
+
+  //------------------------------------------------
+  // Case 2
+  //------------------------------------------------
+  solidEpoxy2 = new G4Box("Epoxy2", fEpoxyDimX / 2., fEpoxyDimY / 2., fEpoxyThickness / 2.);
+  logicEpoxy2 = new G4LogicalVolume(solidEpoxy2, G4Material::GetMaterial("Epoxy"), "lEpoxy2", 0, 0, 0);
+  physiEpoxy2 = new G4PVPlacement(rm,                // no rotation
+	  positionEpoxy2,   // at (x,y,z)
+	  logicEpoxy2,      // its logical volume
+	  "pEpoxy2",        // its name
+	  logicWrapper,      // its mother  volume
+	  false,           // no boolean operations
+	  0);              // copy number
+
   
   //------------------------------
-  // PMT Cathode
+  // PMT Cathode 1
   //------------------------------
   solidCathode = new G4Box("sCath", fCathodeDimX / 2., fCathodeDimY / 2., fCathodeThickness / 2.);
   logicCathode = new G4LogicalVolume(solidCathode, G4Material::GetMaterial("Silicon"), "lCath", 0,0,0);
@@ -651,7 +632,21 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
                                   0);               // copy number
 
   //------------------------------
-  //The rest of Si
+  // PMT Cathode 2
+  //------------------------------
+  solidCathode2 = new G4Box("sCath2", fCathodeDimX / 2., fCathodeDimY / 2., fCathodeThickness / 2.);
+  logicCathode2 = new G4LogicalVolume(solidCathode2, G4Material::GetMaterial("Silicon"), "lCath2", 0,0,0);
+  physiCathode2 = new G4PVPlacement(rm,               // no rotation
+                                  positionCathode2,  // at (x,y,z)
+                                  logicCathode2,     // its logical volume 
+                                  "pCath2",          // its name
+                                  logicWrapper,       // its mother  volume
+                                  false,            // no boolean operations
+                                  0);               // copy number
+
+
+  //------------------------------
+  //The rest of Si 1
   //------------------------------
   solidSiBulk = new G4Box("sSiBulk", fEpoxyDimX / 2., fEpoxyDimY / 2., fCathodeThickness / 2.);
   G4SubtractionSolid* subSiBulk = new G4SubtractionSolid("subSiBulk", solidSiBulk, solidCathode);
@@ -663,6 +658,21 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 	  logicWrapper,       // its mother  volume
 	  false,            // no boolean operations
 	  0);               // copy number
+
+  //------------------------------
+  //The rest of Si 2
+  //------------------------------
+  solidSiBulk2 = new G4Box("sSiBulk2", fEpoxyDimX / 2., fEpoxyDimY / 2., fCathodeThickness / 2.);
+  G4SubtractionSolid* subSiBulk2 = new G4SubtractionSolid("subSiBulk2", solidSiBulk2, solidCathode2);
+  logicSiBulk2 = new G4LogicalVolume(subSiBulk2, G4Material::GetMaterial("Silicon"), "lSiBulk2", 0, 0, 0);
+  physiSiBulk2 = new G4PVPlacement(rm,               // no rotation
+	  positionCathode2,  // at (x,y,z)
+	  logicSiBulk2,      // its logical volume 
+	  "pSiBulk2",        // its name
+	  logicWrapper,       // its mother  volume
+	  false,            // no boolean operations
+	  0);               // copy number
+
 
 //------------------------------------------------
 // Define regions
@@ -681,9 +691,13 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 // Define sensitive detector
 //------------------------------------------------
 
-  G4String sensitiveDetectorName = "/detector/sensitiveDetector";
-  theCathodeSD = new CathodeSD(sensitiveDetectorName);
-  logicCathode->SetSensitiveDetector(theCathodeSD);
+  //G4String sensitiveDetectorName = "/detector/sensitiveDetector";
+  //theCathodeSD = new CathodeSD(sensitiveDetectorName);
+  //logicCathode->SetSensitiveDetector(theCathodeSD);
+
+  G4String sensitiveDetectorName3 = "/detector/sensitiveDetector3";
+  theCathodeSD2 = new CathodeSD(sensitiveDetectorName3);
+  logicCathode2->SetSensitiveDetector(theCathodeSD2);
 
   G4String sensitiveDetectorName2 = "/detector/sensitiveDetector2";
   theScintillatorSD = new ScintillatorSD(sensitiveDetectorName2);
@@ -700,12 +714,16 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
   //new G4LogicalBorderSurface("scint2AirFaceBorderSurface", physiScint, physiWorld, groundWhitePainted);
 
   new G4LogicalBorderSurface("grease2AirFaceBorderSurface", physiGrease, physiWorld, polishedAir);
+  new G4LogicalBorderSurface("grease2AirFaceBorderSurface2", physiGrease2, physiWorld, polishedAir);
 
   new G4LogicalBorderSurface("epoxy2AirFaceBorderSurface", physiEpoxy, physiWorld, polishedBlackPainted);
+  new G4LogicalBorderSurface("epoxy2AirFaceBorderSurface2", physiEpoxy2, physiWorld, polishedBlackPainted);
 
   new G4LogicalBorderSurface("Epoxy2CathodeBorderSurface", physiEpoxy, physiCathode, CathodeMaterial);
+  new G4LogicalBorderSurface("Epoxy2CathodeBorderSurface2", physiEpoxy2, physiCathode2, CathodeMaterial);
 
   new G4LogicalBorderSurface("Epoxy2SiBulkBorderSurface", physiEpoxy, physiSiBulk, CathodeMaterial);
+  new G4LogicalBorderSurface("Epoxy2SiBulkBorderSurface2", physiEpoxy2, physiSiBulk2, CathodeMaterial);
 
   //--------- Visualization attributes -------------------------------
   G4VisAttributes* ScintVisAtt = new G4VisAttributes(G4Colour(1.0,0.0,1.0, 0.6));
@@ -718,6 +736,8 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
   logicScint->SetVisAttributes(ScintVisAtt);
   logicCathode->SetVisAttributes(CathodeVisAtt);
   logicGrease->SetVisAttributes(GreaseVisAtt);
+  logicCathode2->SetVisAttributes(CathodeVisAtt);
+  logicGrease2->SetVisAttributes(GreaseVisAtt);
 
 
   //G4OpticalSurface* opticalSurface = dynamic_cast <G4OpticalSurface*>(muS->GetSurface(physiCone, physiWorld)->GetSurfaceProperty());
@@ -737,7 +757,6 @@ G4VPhysicalVolume * DetectorConstruction::constructDetector()
 
 void DetectorConstruction::updateWorldLength()
 {
-//	G4double detectorlength = fScintDimX + fScintDimY + fScintDimZ + fGreaseThickness + fEpoxyDimX + fEpoxyDimY + fEpoxyThickness + fSteelCaseLength;
 	G4double detectorlength = fScintDimX + fScintDimY + fScintDimZ + fGreaseThickness + fEpoxyDimX + fEpoxyDimY + fEpoxyThickness;
 
 	fWorldLength = std::max(detectorlength, fSourceDistance)*2.0;
