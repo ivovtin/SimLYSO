@@ -1,11 +1,11 @@
 ##/gun/position 0 0 {zPosition} cm
 ##/MTD/detector/armAngle 30. deg
 ## default -> e-
-##/gun/particle e-
+/gun/particle e-
 ##/gun/particle mu-
 ##/gun/particle pi-
 /MTD/detector/armAngle {Angle} deg
 /gun/energy {eKin} MeV
-##/MTDAction/nameRootFile file_{eKin}MeV_{Angle}deg.root 
-/run/beamOn 100
+/MTDAction/nameRootFile file_{eKin}MeV_{Angle}deg.root 
+/run/beamOn 1000
 
