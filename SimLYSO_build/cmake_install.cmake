@@ -1,4 +1,4 @@
-# Install script for directory: /home/ovtin/development/simulation/SimLYSO
+# Install script for directory: /home/yivo/work/geant4/SimLYSO/SimLYSO
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SimLYSO"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/SimLYSO")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/SimLYSO")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SimLYSO" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SimLYSO")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SimLYSO"
-         OLD_RPATH "/ceph/sw/lcg/sctau-dev/ROOT/6.14.06/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/x86_64-redhat7-gcc8-opt/lib64:/ceph/sw/lcg/sctau-dev/motif/2.3.8/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/mesa/18.3.4/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/qt/4.8.7/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/XercesC/3.1.3/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/zlib/1.2.11/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/expat/2.2.5/x86_64-redhat7-gcc8-opt/lib:/ceph/sw/lcg/sctau-dev/clhep/2.4.1.0/x86_64-redhat7-gcc8-opt/lib:"
+         OLD_RPATH "/home/yivo/work/root/root_build/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SimLYSO")
@@ -65,5 +65,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

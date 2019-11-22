@@ -1,7 +1,7 @@
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/install/strip.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/edit_cache.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/list_install_components.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/SimLYSO.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/install/local.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/rebuild_cache.dir
-/home/ovtin/development/simulation/SimLYSO/SimLYSO_build/CMakeFiles/install.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/install/strip.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/edit_cache.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/list_install_components.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/SimLYSO.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/install/local.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/rebuild_cache.dir
+/home/yivo/work/geant4/SimLYSO/SimLYSO/SimLYSO_build/CMakeFiles/install.dir

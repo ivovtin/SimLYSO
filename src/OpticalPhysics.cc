@@ -98,13 +98,13 @@ void OpticalPhysics::ConstructProcess()
       pManager->AddProcess(fCerenkovProcess);
       pManager->SetProcessOrdering(fCerenkovProcess,idxPostStep);
     }
-   /*    
+/*
     if(fScintProcess->IsApplicable(*particle)){
       pManager->AddProcess(fScintProcess);
       pManager->SetProcessOrderingToLast(fScintProcess,idxAtRest);
       pManager->SetProcessOrderingToLast(fScintProcess,idxPostStep);
     }
-   */
+*/
   }
 }
 

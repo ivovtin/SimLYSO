@@ -33,70 +33,86 @@ class G4GenericMessenger;
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
-  
+
      DetectorConstruction();
     ~DetectorConstruction();
 
   public:
-  
+
      G4VPhysicalVolume* Construct();
      void setDefaultDimensions();
-	 G4VSensitiveDetector* GetSensetiveDetector() { return theCathodeSD; }
-	 G4VSensitiveDetector* GetSensetiveDetector2() { return theCathodeSD2; }
+	 G4VSensitiveDetector* GetSensetiveDetector() { return theCathodeSDRight; }
+	 G4VSensitiveDetector* GetSensetiveDetector2() { return theCathodeSDLeft; }
 	 G4VPhysicalVolume*    GetScintillator() { return physiScint; }
 
-         void SetArmAngle(G4double val);     
+         void SetArmAngle(G4double val);
          G4double GetArmAngle() { return fArmAngle; }
-         G4double fArmAngle;     
+         G4double fArmAngle;
          int testAngle=fArmAngle*180/3.14;
 
   private:
      void DefineCommands();
 
      G4GenericMessenger* fMessenger;
-     G4RotationMatrix* fArmRotation;     
+     G4RotationMatrix* fArmRotation;
      G4VPhysicalVolume* physiWrapper;
 
 
-     G4Box*             solidWorld;    // pointer to the solid envelope 
+     G4Box*             solidWorld;    // pointer to the solid envelope
      G4LogicalVolume*   logicWorld;    // pointer to the logical envelope
      G4VPhysicalVolume* physiWorld;    // pointer to the physical envelope
-     
+
      G4Box*             solidScint;   // pointer to the conic solid Scintillator
      G4LogicalVolume*   logicScint;   // pointer to the logical Scintillator
      G4VPhysicalVolume* physiScint;   // pointer to the physical Scintillator
 
-     G4Box*             solidEpoxy;
-     G4LogicalVolume*   logicEpoxy;
-     G4VPhysicalVolume* physiEpoxy;
+     G4Box*             solidEpoxyRight;
+     G4LogicalVolume*   logicEpoxyRight;
+     G4VPhysicalVolume* physiEpoxyRight;
 
-     G4Box*             solidEpoxy2;
-     G4LogicalVolume*   logicEpoxy2;
-     G4VPhysicalVolume* physiEpoxy2;
-  
-     G4Tubs*            solidGrease;
-     G4LogicalVolume*   logicGrease;
-     G4VPhysicalVolume* physiGrease;
+     G4Box*             solidEpoxyLeft;
+     G4LogicalVolume*   logicEpoxyLeft;
+     G4VPhysicalVolume* physiEpoxyLeft;
 
-     G4Tubs*            solidGrease2;
-     G4LogicalVolume*   logicGrease2;
-     G4VPhysicalVolume* physiGrease2;
+     G4Box*             solidEpoxyCentral;
+     G4LogicalVolume*   logicEpoxyCentral;
+     G4VPhysicalVolume* physiEpoxyCentral;
 
-     G4Box*             solidCathode;  // pointer to the solid Cathode
-     G4LogicalVolume*   logicCathode;  // pointer to the logical Cathode
-     G4VPhysicalVolume* physiCathode;  // pointer to the physical Cathode
+     G4Tubs*            solidGreaseRight;
+     G4LogicalVolume*   logicGreaseRight;
+     G4VPhysicalVolume* physiGreaseRight;
 
-     G4Box*             solidCathode2;  // pointer to the solid Cathode
-     G4LogicalVolume*   logicCathode2;  // pointer to the logical Cathode
-     G4VPhysicalVolume* physiCathode2;  // pointer to the physical Cathode
+     G4Tubs*            solidGreaseLeft;
+     G4LogicalVolume*   logicGreaseLeft;
+     G4VPhysicalVolume* physiGreaseLeft;
 
-     G4Box*             solidSiBulk;  // 
-     G4LogicalVolume*   logicSiBulk;  // 
-     G4VPhysicalVolume* physiSiBulk;  // 
+     G4Tubs*            solidGreaseCentral;
+     G4LogicalVolume*   logicGreaseCentral;
+     G4VPhysicalVolume* physiGreaseCentral;
 
-     G4Box*             solidSiBulk2;  // 
-     G4LogicalVolume*   logicSiBulk2;  // 
-     G4VPhysicalVolume* physiSiBulk2;  // 
+     G4Box*             solidCathodeRight;  // pointer to the solid Cathode
+     G4LogicalVolume*   logicCathodeRight;  // pointer to the logical Cathode
+     G4VPhysicalVolume* physiCathodeRight;  // pointer to the physical Cathode
+
+     G4Box*             solidCathodeLeft;  // pointer to the solid Cathode
+     G4LogicalVolume*   logicCathodeLeft;  // pointer to the logical Cathode
+     G4VPhysicalVolume* physiCathodeLeft;  // pointer to the physical Cathode
+
+     G4Box*             solidCathodeCentral;  // pointer to the solid Cathode
+     G4LogicalVolume*   logicCathodeCentral;  // pointer to the logical Cathode
+     G4VPhysicalVolume* physiCathodeCentral;  // pointer to the physical Cathode
+
+     G4Box*             solidSiBulkRight;  //
+     G4LogicalVolume*   logicSiBulkRight;  //
+     G4VPhysicalVolume* physiSiBulkRight;  //
+
+     G4Box*             solidSiBulkLeft;  //
+     G4LogicalVolume*   logicSiBulkLeft;  //
+     G4VPhysicalVolume* physiSiBulkLeft;  //
+
+     G4Box*             solidSiBulkCentral;  //
+     G4LogicalVolume*   logicSiBulkCentral;  //
+     G4VPhysicalVolume* physiSiBulkCentral;  //
 
      // surfaces
      G4OpticalSurface *polishedAir;              // polished crystal surface, not wrapped
@@ -139,8 +155,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	 G4double fTopThickness;
 
 	 //Sensetive detector data
-     CathodeSD*      theCathodeSD;
-     CathodeSD*      theCathodeSD2;
+     CathodeSD*      theCathodeSDRight;
+     CathodeSD*      theCathodeSDLeft;
+     CathodeSD*      theCathodeSDCentral;
      ScintillatorSD* theScintillatorSD;
 
      void defineMaterials();
