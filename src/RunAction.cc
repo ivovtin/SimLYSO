@@ -22,7 +22,7 @@ using namespace std;
 #include "DetectorConstruction_SiPM.hh"
 #include "G4GenericMessenger.hh"
 
-RunAction::RunAction(PrimaryGeneratorAction* pga) 
+RunAction::RunAction(PrimaryGeneratorAction* pga)
 :fMessenger(0)
 {
   nPrimaryEvents = -1;
@@ -40,22 +40,22 @@ RunAction::~RunAction()
 
 void RunAction::BeginOfRunAction(const G4Run* aRun)  //вызывается в начале каждого запуска
 {
-  nPrimaryEvents = aRun->GetNumberOfEventToBeProcessed(); 
+  nPrimaryEvents = aRun->GetNumberOfEventToBeProcessed();
   //выводит на экран порядковый номер запуска (0, 1 и т. д.)
   cout << "RunAction::BeginOfRunAction. Run " << aRun->GetRunID() << " start." << endl;
   timer->Start();
 
-  fRunID = aRun->GetRunID(); 
+  fRunID = aRun->GetRunID();
 
   //histograms
   //
   //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   //if (analysisManager->IsActive()) { analysisManager->OpenFile(); }
-  
+
   //=====================================================================================
   // Get analysis manager
   G4AnalysisManager* man = G4AnalysisManager::Instance();
-  
+
   ex_energy=pGenerator->GetParticleEnergy_keV()/1000;
   G4String filename = "Result_" + std::to_string(ex_energy) + "MeV_" + std::to_string(int(detector->GetArmAngle()*180/3.14)) + "deg.root";
   // Open an output file
@@ -81,12 +81,16 @@ void RunAction::BeginOfRunAction(const G4Run* aRun)  //вызывается в �
   //man->CreateNtupleDColumn("opticalphoton");
   //man->CreateNtupleDColumn("time");
   //man->FinishNtuple();
-  
+
   man->CreateH1("ene","Energy", 100, 0., 10000000);
-  man->CreateH1("cht","chTime", 100000, 0., 100000);
-  man->SetH1XAxisTitle(man->GetH1Id("cht"),"Time, ps");
-  man->CreateH1("sct","scTime", 100000, 0., 100000);
-  man->SetH1XAxisTitle(man->GetH1Id("sct"),"Time, ps");
+  man->CreateH1("chtRight","chTimeRight", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("chtRight"),"Time, ps");
+  man->CreateH1("sctRight","scTimeRight", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("sctRight"),"Time, ps");
+  man->CreateH1("chtLeft","chTimeLeft", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("chtLeft"),"Time, ps");
+  man->CreateH1("sctLeft","scTimeLeft", 100000, 0., 100000);
+  man->SetH1XAxisTitle(man->GetH1Id("sctLeft"),"Time, ps");
   //man->CreateH1("optphot","optTime", 100000, 0., 100000);
   //man->SetH1XAxisTitle(man->GetH1Id("optphot"),"Time, ps");
   man->CreateH1("chsp","chSpectrum", 900, 100., 1000.);
@@ -105,7 +109,7 @@ void RunAction::EndOfRunAction(const G4Run* aRun)
   cout << "RunAction::EndOfRunAction. number of event = " << aRun->GetNumberOfEvent() << endl;
   cout << " " << *timer << endl;
 
-  //save histograms      
+  //save histograms
   //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   //if (analysisManager->IsActive())
   //{

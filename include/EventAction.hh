@@ -31,13 +31,14 @@ private:
         RunAction* runAction;
         DetectorConstruction *detector;
 
-private:        
-        G4int ScHitsCollID; 
+private:
+        G4int DetectorRID;
+        G4int DetectorLID;
 	G4int EnHitsCollID;
 	G4int NumHitsCollID;
-	
+
 	TFile* fOutRoot;
-        TTree* dat_tree;     
+        TTree* dat_tree;
         // Energy of primary particle
         double e_primary;
   public:
@@ -57,10 +58,9 @@ private:
 
     virtual void   BeginOfEventAction(const G4Event*);
     virtual void   EndOfEventAction(const G4Event*);
-    
     void OpenRootFile();
     //void PrintDataHC(bool _all);
-    //int GetParticleId(std::string _name);  
+    //int GetParticleId(std::string _name);
 
 };
 

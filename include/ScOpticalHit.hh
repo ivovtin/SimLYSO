@@ -9,29 +9,29 @@
 class ScOpticalHit : public G4VHit
 {
 public:
-  
+
   ScOpticalHit();
   ~ScOpticalHit();
   ScOpticalHit(const ScOpticalHit&);
   const ScOpticalHit& operator=(const ScOpticalHit&);
   int operator==(const ScOpticalHit&) const;
-  
+
   inline void* operator new(size_t);
   inline void  operator delete(void*);
-  
+
   void Draw();
   void Print();
 
 private:
-  
-  G4double      fPhotEne;     // Photon energy energy 
+
+  G4double      fPhotEne;     // Photon energy
   G4double      fPhotTime;    // time of hit
   G4ThreeVector fPhotPos;     // Position of the hit
-  G4String      fProcessName; //Creator process name  
+  G4String      fProcessName; //Creator process name
 
 public:
 
-  // Set functions to store information on hits  
+  // Set functions to store information on hits
   inline void SetEnergy(G4double fEn)   {fPhotEne= fEn;}
   inline void SetTime(G4double fTm)   {fPhotTime= fTm;}
   inline void SetPosition(G4ThreeVector xyz) {fPhotPos = xyz;}
@@ -40,7 +40,7 @@ public:
   // Get functions to acess information on hits
   inline G4double      GetEnergy()     {return fPhotEne; }
   inline G4double      GetTime()       {return fPhotTime; }
-  inline G4ThreeVector GetPosition()   {return fPhotPos; } 
+  inline G4ThreeVector GetPosition()   {return fPhotPos; }
   inline G4String      GetProcessName(){return fProcessName;}
 
 };
@@ -52,7 +52,7 @@ extern G4Allocator<ScOpticalHit> ScOpticalHitAllocator;
 
 inline void* ScOpticalHit::operator new(size_t)
 {
-    return (void*)ScOpticalHitAllocator.MallocSingle();  
+    return (void*)ScOpticalHitAllocator.MallocSingle();
 }
 
 

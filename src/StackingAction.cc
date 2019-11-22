@@ -20,7 +20,7 @@ StackingAction::~StackingAction()
 G4ClassificationOfNewTrack
 StackingAction::ClassifyNewTrack(const G4Track * aTrack)
 {
-  G4AnalysisManager* man = G4AnalysisManager::Instance();  
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
 
   double wL;
   if(aTrack->GetDefinition()==G4OpticalPhoton::OpticalPhotonDefinition())

@@ -27,17 +27,24 @@
 
 using namespace CLHEP;
 
-CathodeSD::CathodeSD(G4String name) : G4VSensitiveDetector(name), HitsCollection(NULL)
+CathodeSD::CathodeSD(G4String name) : G4VSensitiveDetector(name), RHitsCollection(NULL), LHitsCollection(NULL), HitsCollection(NULL)
 {
+ 	Name = name;
+	//Num = i;
 	// In the constructor, define the name of the hits
 	// collection which is handled by this sensitive detector.
 	// In case your sensitive detector generates more than	one kinds of hits(e.g.anode and cathode hits
 	// separately), define all collection names.
-    collectionName.insert("ScHitsCollection");
+    collectionName.insert(name);
+//    collectionName.insert("LHitsCollection");
+//    collectionName.insert("sensitiveDetectorL");
+ //   collectionName.insert("ScHitsCollectionL");
 
 	//Register that
 	G4SDManager *sdman = G4SDManager::GetSDMpointer();
-	sdman->AddNewDetector(this);
+	sdman -> AddNewDetector(this);
+	sdman -> Activate(name, true);
+	G4cout << "I MADE THE DETECTOR" << G4endl;
 }
 
 CathodeSD::~CathodeSD()
@@ -55,7 +62,10 @@ void CathodeSD::Initialize(G4HCofThisEvent* HCE)
 
     // init collections
     // SensitiveDetectorName and collectionName are data members of G4VSensitiveDetector
-    HitsCollection = new ScOpticalHitsCollection(SensitiveDetectorName, collectionName[0]);
+	/*if(Name == "sensitiveDetectorR")*/ HitsCollection = new ScOpticalHitsCollection(SensitiveDetectorName, collectionName[0]);
+	G4cout << "I CREATE HitsCollection for..." << Name << G4endl;
+	/*if(Name == "sensitiveDetectorL")*/ //LHitsCollection = new ScOpticalHitsCollection("sensitiveDetectorL", collectionName[0]);
+//	HitsCollection2 = new ScOpticalHitsCollection(Name, collectionName[1]);
 	// The SDM can return a hit collection ID (useful for fishing
 	// out your collection from the hits collections of the event
 
@@ -67,8 +77,12 @@ void CathodeSD::Initialize(G4HCofThisEvent* HCE)
 	// cannot be invoked in the constructor of this detector class.
 	//  Instantiate hits collection(s) and attach it / them to G4HCofThisEvent
     //	object given in the argument.
-    if(HCID<0){ HCID = GetCollectionID(0); }
-    HCE->AddHitsCollection(HCID, HitsCollection);
+	if(HCID < 0) HCID = G4SDManager::GetSDMpointer() -> GetCollectionID(collectionName[0]);
+		HCE -> AddHitsCollection(HCID, HitsCollection);
+//			HCID = GetCollectionID(1);
+//		HCE -> AddHitsCollection(HCID, HitsCollection2);
+		//HCID = GetCollectionID(1);
+		//HCE -> AddHitsCollection(HCID, LHitsCollection);
 }
 
 G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
@@ -79,13 +93,13 @@ G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
 	static G4OpBoundaryProcess* boundary = NULL;
 	if (!boundary)
 	{
-		G4ProcessManager* pm = theStep->GetTrack()->GetDefinition()->GetProcessManager();
-		G4int nprocesses = pm->GetProcessListLength();
-		G4ProcessVector* pv = pm->GetProcessList();
+		G4ProcessManager* pm = theStep -> GetTrack() -> GetDefinition() -> GetProcessManager();
+		G4int nprocesses = pm -> GetProcessListLength();
+		G4ProcessVector* pv = pm -> GetProcessList();
 
 		for (G4int i = 0; i<nprocesses; i++)
 		{
-			if ((*pv)[i]->GetProcessName() == "OpBoundary")
+			if ((*pv)[i] -> GetProcessName() == "OpBoundary")
 			{
 				boundary = (G4OpBoundaryProcess*)(*pv)[i];
 				break;
@@ -95,13 +109,13 @@ G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
 
 	//////////////////////////////////////////////////////////
 	//
-	G4Track* track = theStep->GetTrack();
-	if((track->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()) && (track->GetParentID()>0))
+	G4Track* track = theStep -> GetTrack();
+	if((track -> GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()) && (track -> GetParentID()>0))
 	{
 		// collect all information about track
-		G4StepPoint * thePostPoint = theStep->GetPostStepPoint();
+		G4StepPoint * thePostPoint = theStep -> GetPostStepPoint();
 		//define deposition point
-		G4ThreeVector xyzCoor = thePostPoint->GetPosition();
+		G4ThreeVector xyzCoor = thePostPoint -> GetPosition();
 
 		//add information about hit to collection
 		_nHits++;
@@ -110,11 +124,11 @@ G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
 		//Otherwise the boundary status may not be valid
 		//Prior to Geant4.6.0-p1 this would not have been enough to check
 
-		if (thePostPoint->GetStepStatus() == fGeomBoundary)
+		if (thePostPoint -> GetStepStatus() == fGeomBoundary)
 		{
 			if (boundary)
 			{
-				G4OpBoundaryProcessStatus boundaryStatus = boundary->GetStatus();
+				G4OpBoundaryProcessStatus boundaryStatus = boundary -> GetStatus();
 				switch (boundaryStatus)
 				{
 				case Detection://Note, this assumes that the volume causing detection
@@ -122,28 +136,30 @@ G4bool CathodeSD::ProcessHits(G4Step* theStep, G4TouchableHistory*)
 							   //non-zero efficiency. Triger sensitive detector manually since photon is
 							   //absorbed but status was Detection
 				{
+					G4cout << "DETECTION for..." << Name << xyzCoor.z()/mm <<G4endl;
 					//count detected
 					_nDetectedLight++;
 
 					//add information about hit to collection
-					G4StepPoint * thePostPoint  = theStep->GetPostStepPoint();
+					G4StepPoint * thePostPoint  = theStep -> GetPostStepPoint();
 					//define deposition point
-					G4ThreeVector xyzCoor       = thePostPoint->GetPosition();
+					G4ThreeVector xyzCoor       = thePostPoint -> GetPosition();
 
 					ScOpticalHit* OpticalHit = new ScOpticalHit;
-					OpticalHit->SetEnergy(theStep->GetTrack()->GetKineticEnergy());
-					OpticalHit->SetPosition(xyzCoor);
-					OpticalHit->SetTime(theStep->GetTrack()->GetGlobalTime());
+					OpticalHit -> SetEnergy(theStep -> GetTrack() -> GetKineticEnergy());
+					OpticalHit -> SetPosition(xyzCoor);
+					OpticalHit -> SetTime(theStep -> GetTrack() -> GetGlobalTime());
 
 					//get information about creator
-					const G4VProcess* creatorProcess = track->GetCreatorProcess();
+					const G4VProcess* creatorProcess = track -> GetCreatorProcess();
 					if (creatorProcess)
 					{
-						G4String creator = creatorProcess->GetProcessName();
-                        OpticalHit->SetProcessName(creator);
+						G4String creator = creatorProcess -> GetProcessName();
+                        OpticalHit -> SetProcessName(creator);
 					}
-
-					HitsCollection->insert(OpticalHit);
+				//	if(xyzCoor.z()/mm > 0) RHitsCollection -> insert(OpticalHit);
+				//	if(xyzCoor.z()/mm < 0) LHitsCollection -> insert(OpticalHit);
+					HitsCollection -> insert(OpticalHit);
 				}
 				break;
 
@@ -178,12 +194,12 @@ G4bool CathodeSD::ProcessHits_OpticalGenerated(int nScintillationPhotons, int nC
 
 void CathodeSD::EndOfEvent(G4HCofThisEvent* HCE)
 {
-	  static G4int HCID = -1;
-	  if(HCID<0)
-	  { 
-	      HCID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
-	  }
-	  HCE->AddHitsCollection(HCID, HitsCollection);
+//	  static G4int HCID = -1;
+//	  if(HCID<0)
+//	  {
+//		HCID = G4SDManager::GetSDMpointer() -> GetCollectionID(collectionName[0]);
+//	  }
+//	HCE -> AddHitsCollection(HCID, HitsCollection);
 }
 
 

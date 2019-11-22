@@ -58,7 +58,7 @@ void ScintillatorSD::Initialize(G4HCofThisEvent* HCE)
 	// GetCollectionID() is available after this sensitive detector object is
 	// constructed and registered to G4SDManager.
 	//Argument: order of the collection as stored in CollectionName
-	HCID = GetCollectionID(0); 
+	HCID = GetCollectionID(0);
 	HCE->AddHitsCollection(HCID, HitsCollection);
 	HCID = GetCollectionID(1);
 	HCE->AddHitsCollection(HCID, NumHitsCollection);

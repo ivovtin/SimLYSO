@@ -22,6 +22,8 @@ class CathodeSD : public G4VSensitiveDetector
       void   EndOfEvent(G4HCofThisEvent*);
 
   private:
+	//  int    Num;
+	  G4String Name;
 	  int   _nHits;
 	  int   _nDetectedLight;
 	  int   _nScintillation;
@@ -32,7 +34,10 @@ class CathodeSD : public G4VSensitiveDetector
 
 //	  std::vector<double> vWeight;
 //	  std::vector<double> vShape;
-      ScOpticalHitsCollection*  HitsCollection;   
+      ScOpticalHitsCollection*  RHitsCollection;
+      ScOpticalHitsCollection*  LHitsCollection;
+      ScOpticalHitsCollection*  HitsCollection;
+      ScOpticalHitsCollection*  HitsCollection2;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
